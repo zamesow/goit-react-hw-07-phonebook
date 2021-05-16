@@ -1,5 +1,5 @@
 {
-  "name": "goit-react-hw-06-phonebook",
+  "name": "goit-react-hw-07-phonebook",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,6 +10,7 @@
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "gh-pages": "^3.1.0",
+    "json-server": "^0.16.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.3",
@@ -22,12 +23,13 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=7000 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "api-server": "json-server --delay 300 --port 7070 --watch db.json"
   },
   "eslintConfig": {
     "extends": [
@@ -65,17 +67,17 @@
     "prettier": "^2.2.1",
     "redux-devtools-extension": "^2.13.9"
   },
-  "description": "Домашнее задание №6",
+  "description": "Домашнее задание №7",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zamesow/goit-react-hw-06-phonebook.git"
+    "url": "git+https://github.com/zamesow/goit-react-hw-07-phonebook.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Zamesov Timur",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zamesow/goit-react-hw-06-phonebook/issues"
+    "url": "https://github.com/zamesow/goit-react-hw-07-phonebook/issues"
   },
-  "homepage": "https://zamesow.github.io/goit-react-hw-06-phonebook/"
+  "homepage": "https://zamesow.github.io/goit-react-hw-07-phonebook/"
 }
