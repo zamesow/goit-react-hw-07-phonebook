@@ -1,19 +1,40 @@
-import shortid from 'shortid';
 import { createAction } from '@reduxjs/toolkit';
 
-const addContact = createAction('contact/add', state => ({
-  payload: {
-    id: shortid.generate(),
-    name: state.name,
-    number: state.number,
-  },
-}));
+export const fetchContactReqest = createAction('contacts/fetchContactRequest');
+export const fetchContactSuccess = createAction('contacts/fetchContactSuccess');
+export const fetchContactError = createAction('contacts/fetchContactError');
 
-const deleteContact = createAction('contact/delete');
+export const addContactReqest = createAction('contacts/addContactRequest');
+export const addContactSuccess = createAction('contacts/addContactSuccess');
+export const addContactError = createAction('contacts/addContactError');
 
-const changeFilter = createAction('contact/changeFilter');
+export const deleteContactReqest = createAction(
+  'contacts/deleteContactRequest',
+);
+export const deleteContactSuccess = createAction(
+  'contacts/deleteContactSuccess',
+);
+export const deleteContactError = createAction('contacts/deleteContactError');
 
-export default { addContact, deleteContact, changeFilter };
+export const changeFilter = createAction('contact/changeFilter');
+
+// const addContact = createAction('contact/add', state => ({
+//   payload: {
+//     id: shortid.generate(),
+//     name: state.name,
+//     number: state.number,
+//   },
+// }));
+
+// * ДЗ-7 ============================================
+
+// ? // note HW-7-1
+
+// - создаю экшины под запрос, добавление, стирание контактов по паттерну request-success-error
+// - экшин фильтра прежний, он остаётся на клиенте
+// - id приходит с сервера, shortid больше не нужен
+
+// * ДЗ-6 ============================================
 
 // ? // note 4. index.js -> создаём actions
 // - объект с обязательными свойствами {type: '', payload: ''}

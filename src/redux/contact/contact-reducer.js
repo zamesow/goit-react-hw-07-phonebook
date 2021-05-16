@@ -1,29 +1,85 @@
 import { createReducer } from '@reduxjs/toolkit';
-import actions from './contact-actions';
+import { combineReducers } from 'redux';
+import {
+  fetchContactReqest,
+  fetchContactSuccess,
+  fetchContactError,
+  addContactReqest,
+  addContactSuccess,
+  addContactError,
+  deleteContactReqest,
+  deleteContactSuccess,
+  deleteContactError,
+  changeFilter,
+} from './contact-actions';
 
-const initialState = [
-  { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-  { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-  { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-  { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-];
-
-console.log(actions.addContact.type);
-
-const contact = createReducer(initialState, {
-  [actions.addContact]: (state, { payload }) => [...state, payload],
-  [actions.deleteContact]: (state, { payload }) =>
-    state.filter(({ id }) => id !== payload),
-});
+const items = createReducer(
+  [
+    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+  ],
+  {
+    [fetchContactSuccess]: (_, { payload }) => payload,
+    [addContactSuccess]: (state, { payload }) => [...state, payload],
+    [deleteContactSuccess]: (state, { payload }) =>
+      state.filter(({ id }) => id !== payload),
+  },
+);
 
 const filter = createReducer('', {
-  [actions.changeFilter]: (_, { payload }) => payload,
+  [changeFilter]: (_, { payload }) => payload,
 });
 
-export default {
-  contact,
+const loading = createReducer(false, {
+  [fetchContactReqest]: () => true,
+  [fetchContactSuccess]: () => false,
+  [fetchContactError]: () => false,
+  [addContactReqest]: () => true,
+  [addContactSuccess]: () => false,
+  [addContactError]: () => false,
+  [deleteContactReqest]: () => true,
+  [deleteContactSuccess]: () => false,
+  [deleteContactError]: () => false,
+});
+
+export default combineReducers({
+  items,
   filter,
-};
+  loading,
+});
+
+// * ДЗ-7 ============================================
+
+// ? // note HW-7-3
+
+// импортируем все экшины
+// импортируем createReducer и combineReducers
+// создаём основной элемент стейта для хранения контактов, например items
+// - создаём ему редьюсер по паттерну [type]: (prevState, action) => newState
+// -- initialState не нужен, мы берём его из db.json
+// -- делаем state пустой массив
+
+// [fetch]
+// при загрузке стр. нам нужен только наш массив контактов из db.json
+// - type = fetchContactReqest
+// - payload = fetchContactSuccess(data) из contact-operations
+
+// [filter]
+
+// [loading]
+// - нужен для поведения стейта во время загрузки
+// - в нашем случае это будет надпись 'Загружаем' или спиннер
+// -- начальное состояние которого будет false
+// - делаем для всех экшинов, которые под запросы (кроме фильтра)
+// -- делаем true только при request, при остальных false
+
+// export default combineReducers({ items, filter, loading });
+// - со всеми нашими свойствами стейта
+// - принимаем их в сторе и назначаем главному свойству направления contacts
+
+// * ДЗ-6 ============================================
 
 // ? // note 19. вынос actionTypes
 // - если мы используем switch(type) {case 'contact/Name'}, то type лучше хранить отдельно как переменную

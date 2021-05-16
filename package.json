@@ -23,13 +23,13 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "set PORT=7000 && react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "api-server": "json-server --delay 300 --port 7070 --watch db.json"
+    "api-server": "json-server --delay 300 --port 4040 --watch db.json"
   },
   "eslintConfig": {
     "extends": [
@@ -79,5 +79,5 @@
   "bugs": {
     "url": "https://github.com/zamesow/goit-react-hw-07-phonebook/issues"
   },
-  "homepage": "https://zamesow.github.io/goit-react-hw-07-phonebook/"
+  "homepage": "https://zamesow.github.io/contacts"
 }

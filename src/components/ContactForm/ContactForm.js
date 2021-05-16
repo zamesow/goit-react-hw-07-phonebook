@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import contactActions from '../../redux/contact/contact-actions';
+import { contactsOperations } from '../../redux/contact';
 import mc from './ContactForm.module.css';
 
 export class ContactForm extends Component {
@@ -33,7 +33,6 @@ export class ContactForm extends Component {
 
   render() {
     const { name, number } = this.state;
-    // const { handleNumberChange, handleNameChange } = this.props;
 
     return (
       <div className={mc.ContactForm}>
@@ -64,7 +63,7 @@ export class ContactForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: state => dispatch(contactActions.addContact(state)),
+  onSubmit: state => dispatch(contactsOperations.addContact(state)),
 });
 
 export default connect(null, mapDispatchToProps)(ContactForm);

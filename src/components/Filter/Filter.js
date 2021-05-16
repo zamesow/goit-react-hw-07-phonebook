@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import contactActions from '../../redux/contact/contact-actions';
+import { contactsOperations } from '../../redux/contact';
 import mc from './Filter.module.css';
 
-const Filter = ({ value, filterProp }) => (
+const Filter = ({ value, filter }) => (
   <label className={mc.ContactForm}>
     Find contacts by name
     <input
       className={mc.FeilterForm__text}
       type="text"
       value={value}
-      onChange={filterProp}
+      onChange={filter}
     />
   </label>
 );
@@ -20,7 +20,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  filterProp: e => dispatch(contactActions.changeFilter(e.target.value)),
+  filter: e => dispatch(contactsOperations.changeFilter(e.target.value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
