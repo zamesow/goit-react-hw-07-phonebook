@@ -1,0 +1,29 @@
+.ContactForm {
+  width: 300px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ContactForm__form {
+  margin: 5px;
+  padding: 20px;
+  border: 1px solid black;
+}
+
+.ContactForm__subtitle {
+  line-height: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.ContactForm__text {
+  width: 200px;
+  margin-top: 10px;
+}
+
+.ContactForm__text:hover {
+  border-radius: 4px;
+  box-shadow: inset 0 0 30px rgb(235, 235, 235);
+}
